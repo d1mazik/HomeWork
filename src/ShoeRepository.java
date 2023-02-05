@@ -11,7 +11,7 @@ public class ShoeRepository {
         DatabaseConnection dbConnection = DatabaseConnection.getInstance();
         try (Connection connection = dbConnection.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("select id,size,brand,color,price from WebShop.Shoes")
+             ResultSet resultSet = statement.executeQuery("select id,size,brand,color,price,quantity from WebShop.Shoes")
 
         ) {
             while (resultSet.next()) {
@@ -31,6 +31,9 @@ public class ShoeRepository {
                 int price = resultSet.getInt("price");
                 temp.setPrice(price);
 
+                int quantity = resultSet.getInt("quantity");
+                temp.setQuantity(quantity);
+
                 shoes.add(temp);
             }
         }
@@ -38,7 +41,7 @@ public class ShoeRepository {
     }
     public static List<Shoe> getAllShoesByCategory(String category) throws SQLException, IOException {
         List<Shoe> shoes = new ArrayList<>();
-        String query = "select Shoes.id, Shoes.size, Shoes.brand, Shoes.color, Shoes.price from Shoes " +
+        String query = "select Shoes.id, Shoes.size, Shoes.brand, Shoes.color, Shoes.price, Shoes.quantity from Shoes " +
                 "inner join categoryMapping on Shoes.id = categoryMapping.shoeId " +
                 "inner join shoeCategory on categoryMapping.categoryId = shoeCategory.id" +
                 " where shoeCategory.typeOfShoe = ?";
@@ -50,7 +53,8 @@ public class ShoeRepository {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 shoes.add(new Shoe(rs.getInt("id"),rs.getString("size"),
-                        rs.getString("brand"), rs.getString("color"), rs.getInt("price")));
+                        rs.getString("brand"), rs.getString("color"),
+                        rs.getInt("price"), rs.getInt("quantity")));
             }
         }
         return shoes;
@@ -72,8 +76,5 @@ public class ShoeRepository {
             }
         }
         return null;
- }
-
-
-
+    }
 }

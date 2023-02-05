@@ -5,7 +5,17 @@ public class Shoe {
     protected String brand;
     protected String color;
     protected int price;
+    protected  int quantity;
 
+
+    public Shoe(int id, String size, String brand, String color, int price,int quantity) {
+        this.id = id;
+        this.size = size;
+        this.brand = brand;
+        this.color = color;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     public Shoe(int id, String size, String brand, String color, int price) {
         this.id = id;
@@ -13,12 +23,6 @@ public class Shoe {
         this.brand = brand;
         this.color = color;
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return brand + " " + size + " " +
-                color + " " + price;
     }
 
     public Shoe(){}
@@ -61,5 +65,24 @@ public class Shoe {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Brand: "+ brand + ". " + "Size: " + size + ". " +
+                "Color: " + color + ". "+  " Price: " +  price + ". "+ "Quantity: " +  quantity;
+    }
+
+    public String toStringWithoutQuantity() {
+        return "Brand: "+ brand + ". " + "Size: " + size + ". " +
+                "Color: " + color + ". "+  "Price: " +  price + ". ";
     }
 }
