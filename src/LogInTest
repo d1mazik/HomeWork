@@ -159,3 +159,12 @@ public static void main(String[] args) throws SQLException, IOException {
             e.printStackTrace();
         }
     }
+
+
+case 6:
+                                    if (order.getShoes().size() > 0) {
+                                        order.getShoes().forEach(e -> System.out.println(e.toStringWithoutQuantity()));
+                                    } else {
+                                        System.out.println("Du har inte lagt in produkt in order");
+                                    }
+                                    break;

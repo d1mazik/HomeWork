@@ -80,7 +80,7 @@ public class Shoe {
         return "Brand: "+ brand + ". " + "Size: " + size + ". " +
                 "Color: " + color + ". "+  " Price: " +  price + ". "+ "Quantity: " +  quantity;
     }
-
+   
     public String toStringWithoutQuantity() {
         return "Brand: "+ brand + ". " + "Size: " + size + ". " +
                 "Color: " + color + ". "+  "Price: " +  price + ". ";

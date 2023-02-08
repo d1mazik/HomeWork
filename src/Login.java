@@ -104,7 +104,17 @@ public class Login {
                                     System.out.println("Ogiltigt val!");
                                     break;
                             }
-                            if(choice > 0 && choice < 9) {
+
+                            /***
+                             * AtomicInteger är en klass i Java som används för att hålla räkning på ett värde
+                             * som kan ändras av flera trådar samtidigt. I det här fallet används den för att
+                             * hålla räkning på en unik numrering för skor som visas i listan. Varje gång en sko
+                             * läggs till i listan, ökar b med 1 för att ge den en unik numrering. På så sätt kan
+                             * användaren enkelt välja en sko från listan genom att ange dess nummer.
+                             */
+
+                            if(choice > 0 && choice < 6) {
+                                System.out.println("Välj skor för att lägga på order:");
                                 shoeList = ShoeRepository.getAllShoesByCategory(category);
                                 AtomicInteger b = new AtomicInteger(1);
                                 shoeList.forEach(ae -> {
